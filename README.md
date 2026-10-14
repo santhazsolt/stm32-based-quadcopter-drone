@@ -170,7 +170,7 @@ The ESC interfaces must use a signal format supported by the selected ESCs and c
 
 Motor order, rotation direction, and the relationship between motor outputs and the quadcopter's frame orientation must be documented and tested.
 
-### . Programming and Debugging
+### 5. Programming and Debugging
 
 The board is designed to support development and troubleshooting through:
 

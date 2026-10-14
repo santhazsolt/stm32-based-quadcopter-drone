@@ -201,20 +201,6 @@ The hardware uses a staged power architecture.
 
 The final electrical behavior depends on the selected component variants, resistor values, capacitor values, PCB implementation, and load conditions.
 
-### Design considerations
-
-- Verify each supply rail before installing or enabling sensitive components.
-- Check regulator input and output voltages under realistic loads.
-- Confirm that the logic-level translator supports the required signal direction and SPI timing.
-- Place decoupling capacitors close to the relevant IC supply pins.
-- Keep high-current motor power paths separate from sensitive sensor circuitry as far as practical.
-- Verify common-ground connections and the return paths for digital and power currents.
-- Ensure the USB and battery power arrangements cannot unintentionally back-feed an external USB port.
-
-The power architecture must be tested on the assembled board before the controller is connected to a battery-powered propulsion system.
-
----
-
 ## Firmware Architecture
 
 The firmware is intended to be organized into independent modules, separating low-level hardware access from flight-control algorithms.
@@ -408,32 +394,6 @@ The project follows a hardware-and-firmware development process.
 8. Verify motor mixing and ESC signal generation without propellers.
 9. Integrate the receiver and validate input handling.
 10. Perform staged, controlled system testing.
-
-Hardware and firmware development should proceed together so that electrical design decisions remain consistent with software requirements.
-
----
-
-## Hardware Bring-Up and Testing
-
-Testing should proceed from individual components to the complete flight-control system.
-
-| Stage                  | Verification goal                                                       |
-| ---------------------- | ----------------------------------------------------------------------- |
-| 1. Power inspection    | Check for shorts, incorrect polarity, and assembly errors               |
-| 2. Power rails         | Measure the regulated supplies and verify stability                     |
-| 3. MCU startup         | Confirm that the microcontroller powers up and can be accessed over SWD |
-| 4. SPI communication   | Verify electrical signals and successful sensor register access         |
-| 5. IMU acquisition     | Confirm plausible, changing accelerometer and gyroscope readings        |
-| 6. Sensor calibration  | Evaluate bias, noise, and orientation response                          |
-| 7. Receiver interface  | Verify valid channel values and signal-loss detection                   |
-| 8. ESC outputs         | Check output timing and channel mapping without propellers              |
-| 9. Control algorithms  | Test filtering, controller calculations, and motor mixing               |
-| 10. Integrated testing | Validate system behavior under controlled conditions                    |
-| 11. Flight testing     | Proceed only after hardware, firmware, and safety checks pass           |
-
-Test results should be recorded rather than assumed. Useful evidence includes supply measurements, SPI traces, IMU output logs, control-loop timing measurements, and oscilloscope captures of ESC signals.
-
-A successful firmware build alone does not establish that the flight controller is electrically correct or flight-ready.
 
 ---
 
